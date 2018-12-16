@@ -83,6 +83,12 @@ make -j5
 
 The firmware images are located in `/home/build/openwrt/bin/targets/<device>/<arch>`
 
+```bash
+# use docker cp to copy the firmware images
+# e.g. wrt_ac_series
+docker cp openwrt-env:/home/build/openwrt/bin/targets/mvebu/cortexa9/ /tmp/openwrtbuild
+```
+
 References/Docs
 -------------------
 
@@ -110,3 +116,7 @@ You can dump your config changes by using he `scripts/diffconfig.sh` script
 ```bash
 ./scripts/diffconfig.sh > myconfig
 ```
+
+License
+------------------------------
+The Dockerfile and configuration templates are OpenSource and licensed under the Terms of [Mozilla Public License 2.0](https://opensource.org/licenses/MPL-2.0) - your're welcome to contribute
