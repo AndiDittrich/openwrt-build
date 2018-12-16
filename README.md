@@ -117,6 +117,12 @@ You can dump your config changes by using he `scripts/diffconfig.sh` script
 ./scripts/diffconfig.sh > myconfig
 ```
 
+
+Prebuild Images
+------------------------------
+
+Some prebuild images (from configuration templates) are available on http://dl.a3non.org/openwrt/
+
 License
 ------------------------------
 The Dockerfile and configuration templates are OpenSource and licensed under the Terms of [Mozilla Public License 2.0](https://opensource.org/licenses/MPL-2.0) - your're welcome to contribute
