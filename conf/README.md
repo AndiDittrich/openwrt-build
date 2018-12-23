@@ -13,7 +13,7 @@ wrtac_ip4
 * **minidlna** media server
 * **openvpn** client/server
 * **samba** server
-* Filesystem utilities `hdparm`, `fdisk`, `marvell sata`, `usb3 storage`, `usb2 storage`, `ext4`
+* Filesystem utilities `hdparm`, `fdisk`, `rsync`, `marvell sata`, `usb3 storage`, `usb2 storage`, `ext4`
 * System utilities `coreutils-base64`
-* Network utilities `iftop`, `rsync`, `curl`
+* Network utilities `dig`, `iftop`, `curl`, `wget`, `ca-certificates`, `iptables-raw`, `nflog`, `ulogd-nflog`, `ulogd-mysql`
 * Removed `ppp`
