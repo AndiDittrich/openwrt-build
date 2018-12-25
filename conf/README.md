@@ -8,6 +8,7 @@ wrtac_ip4
 
 ### Features ###
 
+* `ipv4** **ONLY**
 * dnsmasq is replaced by **unbound** and **isc-dhcpd**
 * Including [rsnapshot-ng](https://github.com/AenonDynamics/rsnapshot-ng) dependencies (`perl5`, `rsync`)
 * **minidlna** media server
