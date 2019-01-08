@@ -15,6 +15,10 @@ wrtac_ip4
 * **openvpn** client/server
 * **samba** server
 * Filesystem utilities `hdparm`, `fdisk`, `rsync`, `marvell sata`, `usb3 storage`, `usb2 storage`, `ext4`
-* System utilities `coreutils-base64`
+* System utilities `coreutils-base64`, `ca-bundle`, `ca-certificates`
 * Network utilities `dig`, `iftop`, `curl`, `wget`, `ca-certificates`, `iptables-raw`, `nflog`, `ulogd-nflog`, `ulogd-mysql`
 * Removed `ppp`
+
+### Notice ###
+
+Replace `/etc/resolv.conf` with a **static file** when using unbound!
