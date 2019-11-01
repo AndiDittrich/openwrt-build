@@ -1,2 +1,4 @@
 .tmp/*
 .credentials/*
+target/*
+!target/.empty

@@ -20,11 +20,12 @@ RUN set -xe \
     && cd /home/build \
     && git clone https://git.openwrt.org/openwrt/openwrt.git openwrt
 
-# checkout v18.06.1 stable
-ARG GIT_REVISION=v18.06.1
+# checkout v18.06.4 stable
+ARG GIT_REVISION=v18.06.4
 
 # fetch branch/tag and update feeds ~100MB
 RUN set -xe \
+    && mkdir -p /home/build/openwrt/bin/targets \
     && cd /home/build/openwrt \
     && git checkout ${GIT_REVISION} \
     && ./scripts/feeds update -a \

@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+VERSION="2.0.1"
+
+show_usage(){
+    cat << EOF
+Usage: openwrtbuild <command> [args...]
+  Commands:
+    init <tag>                  Initializes the build environment with specific image tag
+    cleanup                     Removes containers + images
+    attach                      Re-Starts the build environment and attaches the console
+    --help                      Displays this help
+    --version                   Displays version
+EOF
+    exit 0
+}
+
+show_version(){
+    cat << EOF
+openwrtbuild
+ - Version: ${VERSION}
+ - License: MPL-2.0 http://mozilla.org/MPL/2.0/
+ - Repository: https://github.com/AndiDittrich/openwrt-build
+EOF
+    exit 0
+}
+
+# simple processing
+[ "$1" = "--help" ] && show_usage
+[ "$1" = "--version" ] && show_version
+
+# initialize build env
+init(){
+    # build image
+    docker build \
+        --build-arg GIT_REVISION=$1 \
+        -t openwrt-build:$1 \
+        .
+
+    # create container
+    docker run \
+        -it \
+        --name openwrt-env \
+        --mount type=bind,source="$(pwd)"/target,target=/home/build/openwrt/bin/targets \
+        openwrt-build:$1
+}
+
+# attach to the build environmentt
+attach(){
+    docker start -i openwrt-env 
+}
+
+# remove images + containers
+cleanup(){
+    docker container rm openwrt-env
+    docker image rm openwrt-build
+}
+
+# Command Dispatching
+# ---------------------------------------
+case "$1:$2" in
+    init:*)
+        init "$2"
+        exit 0
+    ;;
+
+    attach:*)
+        attach
+        exit 0
+    ;;
+
+    cleanup:*)
+        cleanup
+        exit 0
+    ;;
+
+    *)
+        show_usage
+        exit 1
+    ;;
+esac
