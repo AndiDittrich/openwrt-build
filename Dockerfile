@@ -1,4 +1,4 @@
-FROM debian:9.6
+FROM debian:buster
 
 # system base packages + build dependencies + user setup ~350MB
 RUN set -xe \
@@ -20,8 +20,8 @@ RUN set -xe \
     && cd /home/build \
     && git clone https://git.openwrt.org/openwrt/openwrt.git openwrt
 
-# checkout v18.06.4 stable
-ARG GIT_REVISION=v18.06.4
+# checkout v18.06.8 stable
+ARG GIT_REVISION=v18.06.8
 
 # fetch branch/tag and update feeds ~100MB
 RUN set -xe \
