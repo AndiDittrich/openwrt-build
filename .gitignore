@@ -2,3 +2,4 @@
 .credentials/*
 target/*
 !target/.empty
+config

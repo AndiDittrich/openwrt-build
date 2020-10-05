@@ -29,6 +29,17 @@ EOF
 [ "$1" = "--help" ] && show_usage
 [ "$1" = "--version" ] && show_version
 
+# project config exists ?
+CONF_FILENAME="$(pwd)/config"
+[ -f "$CONF_FILENAME" ] && {
+    source $CONF_FILENAME
+}
+
+# build dir set ?
+[ -z "$BUILD_DIR" ] && {
+    BUILD_DIR="$(pwd)/target"
+}
+
 # initialize build env
 init(){
     # build image
@@ -41,7 +52,7 @@ init(){
     docker run \
         -it \
         --name openwrt-env \
-        --mount type=bind,source="$(pwd)"/target,target=/home/build/openwrt/bin/targets \
+        --mount type=bind,source=$BUILD_DIR,target=/home/build/openwrt/bin/targets \
         openwrt-build:$1
 }
 
