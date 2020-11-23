@@ -50,7 +50,7 @@ make -j5
 
 ```bash
 # copy diffconfig
-cp ../conf/wrtac_ip4.conf .config
+cp ../conf/v19/wrtac.conf .config
 
 # expand diffconfig
 make defconfig
