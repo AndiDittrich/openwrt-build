@@ -46,6 +46,7 @@ init(){
     docker build \
         --build-arg GIT_REVISION=$1 \
         -t openwrt-build:$1 \
+        --no-cache \
         .
 
     # create container
