@@ -10,7 +10,7 @@ Current Snapshot
 
 * Tag: `v18.06.4`
 * Tag: `v19.07.4`
-* Tag: `v21.02.0-rc4`
+* Tag: `v21.02.1`
 
 Usage
 -------------------
@@ -21,7 +21,7 @@ Usage
 # build docker image using specific openwrt tag/branch
 # the tag/branch name is also used as docker image tag
 # this will automatically checkout the git tag/branch and download the related feeds
-./openwrtbuild init v21.02.0
+./openwrtbuild init v21.02.1
 ```
 
 ### Step 2 - Setup build configuration and run make ###

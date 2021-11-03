@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 
 # system base packages + build dependencies + user setup ~350MB
 RUN set -xe \
