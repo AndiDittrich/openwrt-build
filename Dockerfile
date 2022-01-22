@@ -32,7 +32,7 @@ RUN set -xe \
     && ./scripts/feeds install -a
 
 # copy related configs
-COPY conf /home/build/conf
+COPY conf/ /home/build/conf
 
 # working dir
 WORKDIR /home/build/openwrt
