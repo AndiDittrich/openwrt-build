@@ -58,7 +58,8 @@ init(){
 
 # attach to the build environmentt
 attach(){
-    sudo podman start -i openwrt-env 
+    sudo podman start openwrt-env 
+    sudo podman attach openwrt-env 
 }
 
 # remove images + containers
