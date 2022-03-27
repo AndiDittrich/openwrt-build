@@ -1,7 +1,7 @@
 OpenWRT encapsulated build environment
 ========================================
 
-build openwrt firmware images within docker container. based on debian 9.6
+build openwrt firmware images within podman container. based on debian bullseye
 
 some specific build configurations are available in `/home/build/conf`
 
@@ -10,18 +10,18 @@ Current Snapshot
 
 * Tag: `v18.06.4`
 * Tag: `v19.07.4`
-* Tag: `v21.02.1`
+* Tag: `v21.02.2`
 
 Usage
 -------------------
 
-### Step 1 - Build docker image ###
+### Step 1 - Build container image ###
 
 ```bash
-# build docker image using specific openwrt tag/branch
-# the tag/branch name is also used as docker image tag
+# build container image using specific openwrt tag/branch
+# the tag/branch name is also used as container image tag
 # this will automatically checkout the git tag/branch and download the related feeds
-./openwrtbuild init v21.02.1
+./openwrtbuild init v21.02.2
 ```
 
 ### Step 2 - Setup build configuration and run make ###
@@ -65,47 +65,7 @@ make -j5
 
 ### Step 3 - Firnware Images ###
 
-The firmware images are stored within the directory `target/` of your current working dir via docker bind-mount.
-
-Manual container builds
--------------------------
-
-### Step 1 - Build the docker image ###
-
-This step is optionally (build image from source). It installs the **build environment**, fetches the **openwrt git repository** and adds the related **feeds**
-
-```bash
-# run docker-build via GitHub Docker file
-docker build -t openwrt-build:1806rc https://github.com/AndiDittrich/dockerfiles.git#master:openwrt-build
-
-# OR run docker-build in the current directory (cloned repo)
-# docker build -t openwrt-build:1806rc .
-
-# @ARG GIT_REVISION - you can pass any git commit revision/tag which should be checked-out
-# docker build -t openwrt-custom --build-arg GIT_REVISION=v18.06.0-rc1 https://github.com/AndiDittrich/dockerfiles.git#master:openwrt-build
-```
-
-### Step 2 - Start a new docker container and attach it ###
-
-```bash
-# run docker in interactive mode - container is named openwrt-env based on previous created image
-docker run -it --name openwrt-env openwrt-build:1907
-
-# the entrypoint is set to /bin/bash. you can terminate the container by typing "exit<enter>"
-
-# to "restart" the container just run docker start
-docker start -i openwrt-env
-```
-
-### Step 3 - Copy the firmware files ###
-
-The firmware images are located in `/home/build/openwrt/bin/targets/<device>/<arch>`
-
-```bash
-# use docker cp to copy the firmware images
-# e.g. wrt_ac_series
-docker cp openwrt-env:/home/build/openwrt/bin/targets/mvebu/cortexa9/ /tmp/openwrtbuild
-```
+The firmware images are stored within the directory `target/` of your current working dir via bind-mount (container `/home/build/openwrt/bin/targets/<device>/<arch>`).
 
 References/Docs
 -------------------

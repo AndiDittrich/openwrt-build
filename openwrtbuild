@@ -43,13 +43,13 @@ CONF_FILENAME="$(pwd)/config"
 # initialize build env
 init(){
     # build image
-    sudo podman build \
+    podman build \
         --build-arg GIT_REVISION=$1 \
         --tag openwrt-build:$1 \
         .
 
     # create container
-    sudo podman run \
+    podman run \
         -it \
         --name openwrt-env \
         --mount type=bind,source=$BUILD_DIR,target=/home/build/openwrt/bin/targets \
@@ -58,14 +58,14 @@ init(){
 
 # attach to the build environmentt
 attach(){
-    sudo podman start openwrt-env 
-    sudo podman attach openwrt-env 
+    podman start openwrt-env 
+    podman attach openwrt-env 
 }
 
 # remove images + containers
 cleanup(){
-    sudo podman container rm openwrt-env
-    sudo podman image rm openwrt-build
+    podman container rm openwrt-env
+    podman image rm openwrt-build
 }
 
 # Command Dispatching
